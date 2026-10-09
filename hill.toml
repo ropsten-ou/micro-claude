@@ -1,0 +1,134 @@
+# micro's settings and this plugin's, for hill-ops's settings panel. hill-ops reads
+# this profile once micro, running inside hill-ops, has said hello.
+app = "micro"
+# Where hill-ops's Claude can file a work item, for what micro or the plugin
+# doesn't do yet: this clone's work/, next to this file. Where there's none,
+# such as a clone of the public repo, none.
+work = "work"
+
+[[groups]]
+id = "editor"
+name = "Editor"
+where = "micro · settings.json · applies at once, or when micro opens"
+file = "${MICRO_CONFIG_HOME:-${XDG_CONFIG_HOME:-~/.config}/micro}/settings.json"
+# Written out even when set back to a default, so a running micro, which
+# re-reads the file, sees that change too.
+keep_defaults = true
+
+  [[groups.settings]]
+  key = ["keymenu"]
+  label = "Key menu"
+  help = "Show micro's key menu at the bottom of the screen, like nano."
+  choices = [false, true]
+  default = false
+
+  [[groups.settings]]
+  key = ["softwrap"]
+  label = "Wrap lines"
+  help = "Wrap long lines instead of scrolling sideways."
+  choices = [false, true]
+  default = false
+
+  [[groups.settings]]
+  key = ["wordwrap"]
+  label = "Wrap at spaces"
+  help = "When wrapping, break lines between words."
+  choices = [false, true]
+  default = false
+
+  [[groups.settings]]
+  key = ["ft:markdown", "softwrap"]
+  label = "Wrap notes"
+  help = "Wrap long lines in Markdown files, such as notes."
+  choices = [false, true]
+  default = false
+
+  [[groups.settings]]
+  key = ["ruler"]
+  label = "Line numbers"
+  help = "Show line numbers."
+  choices = [false, true]
+  default = true
+
+  [[groups.settings]]
+  key = ["cursorline"]
+  label = "Cursor line"
+  help = "Highlight the line the cursor is on."
+  choices = [false, true]
+  default = true
+
+  [[groups.settings]]
+  key = ["scrollbar"]
+  label = "Scroll bar"
+  help = "Show a scroll bar."
+  choices = [false, true]
+  default = false
+
+  [[groups.settings]]
+  key = ["mouse"]
+  label = "Mouse"
+  help = "Use the mouse to click, select and scroll."
+  choices = [false, true]
+  default = true
+
+  [[groups.settings]]
+  key = ["colorscheme"]
+  label = "Colours"
+  help = "Colour scheme. Names ending in -tc need a true-colour terminal."
+  choices = [
+    "default", "simple", "atom-dark", "bubblegum", "cmc-16", "cmc-tc", "darcula",
+    "dracula-tc", "dukedark-tc", "dukelight-tc", "dukeubuntu-tc", "geany", "gotham",
+    "gruvbox", "gruvbox-tc", "material-tc", "monokai", "monokai-dark", "one-dark",
+    "railscast", "solarized", "solarized-tc", "sunny-day", "twilight", "zenburn",
+  ]
+  default = "default"
+
+  [[groups.settings]]
+  key = ["tabsize"]
+  label = "Tab width"
+  help = "How many columns a tab takes."
+  choices = [2, 4, 8]
+  default = 4
+
+  [[groups.settings]]
+  key = ["tabstospaces"]
+  label = "Spaces for tabs"
+  help = "Insert spaces when you press Tab."
+  choices = [false, true]
+  default = false
+
+  [[groups.settings]]
+  key = ["autosave"]
+  label = "Autosave"
+  help = "Save every so often, and when quitting with unsaved changes."
+  choices = [0, 10, 30, 60, 300]
+  default = 0
+  names = [[0, "off"], [10, "10 s"], [30, "30 s"], [60, "1 min"], [300, "5 min"]]
+
+  [[groups.settings]]
+  key = ["savecursor"]
+  label = "Remember place"
+  help = "Reopen files where the cursor was last time."
+  choices = [false, true]
+  default = false
+
+[[groups]]
+id = "claude"
+name = "Claude"
+where = "Claude plugin for micro · settings.json · applies at once, or when micro opens"
+file = "${MICRO_CONFIG_HOME:-${XDG_CONFIG_HOME:-~/.config}/micro}/settings.json"
+keep_defaults = true
+
+  [[groups.settings]]
+  key = ["claude.autosave"]
+  label = "Save first"
+  help = "Save open files before each message, so Claude sees your edits."
+  choices = [false, true]
+  default = true
+
+  [[groups.settings]]
+  key = ["claude.autoreload"]
+  label = "Reload after"
+  help = "Reload open files after Claude changes them."
+  choices = [false, true]
+  default = true
